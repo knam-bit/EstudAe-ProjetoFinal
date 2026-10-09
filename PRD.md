@@ -4,7 +4,7 @@
 | ----------------------- | -------------------------------------------------------------------------- |
 | **App**                 | Estudae                                                                    |
 | **Grupo**               | 6                                                                          |
-| **Autores**             | Ketsoanny Nathielly, Ana Beatriz Costa, Estefani Maria e Ikalimony Helissa |
+| **Autores**             | Ketsoanny Nathielly, Ana Beatriz Costa e Larissa Vitoria
 | **Versão do documento** | 1.0                                                                        |
 | **Última atualização**  | 30/09/2026                                                                 |
 | **Status**              | ( ) Rascunho    ( ) Em revisão    ( ) Aprovado                             |

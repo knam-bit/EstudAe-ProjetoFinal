@@ -62,10 +62,9 @@ com.petshop/
 
 | Integrante          | Responsabilidade principal |
 | ------------------- | -------------------------- |
-| Ketsoanny Nathielly | Telas, Compose e navegação |
+| Larissa Vitoria da Silva B3 | Telas, Compose e navegação |
 | Ana Beatriz Costa   | Matérias e dados com Room  |
-| Estefani Maria      | Horários de estudo         |
-| Ikalimony Helissa   | Tarefas e documentação     |
+| Ketsoanny Nathielly  | Tarefas, Horários de estudo e documentação     |
 
 > Todos os integrantes participam do desenvolvimento, revisão e testes do projeto.
 

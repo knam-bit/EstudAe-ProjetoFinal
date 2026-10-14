@@ -54,6 +54,8 @@
 | F2 | Cadastrar horários de estudo   | Sim        | **Ikalimony Helissa**   |
 | F3 | Cadastrar e concluir tarefas   | Sim        | **Ketsoanny Nathielly** |
 | F4 | Visualizar a rotina de estudos | Sim        | **Estefani Maria**      |
+| F5 | Navegação e interface tela inicial | Sim        | **Larissa Vitoria**      |
+
 
 A tela inicial, a navegação e o padrão visual que sustentam F1–F4 ficam com **Larissa Vitoria da Silva B3** (ver Bloco 9).
 

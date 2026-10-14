@@ -1,108 +1,241 @@
-# 📚 EstudAê — Canvas da Equipe
+# 🎯 Canvas do Projeto Final — App Android
 
-> Divisão de atividades entre as cinco integrantes, de forma equilibrada, para que todas tenham participação real no código, no GitHub, nos testes e na entrega final.
-
-Como o professor avalia também o histórico de commits, **cada integrante deve fazer suas próprias alterações e registrá-las no GitHub**.
-
----
-
-## 1. Divisão de atividades
-
-### 1. Larissa Vitoria da Silva B3 — Interface e navegação
-
-- Desenvolver a tela inicial do EstudAê.
-- Criar a navegação entre as telas.
-- Padronizar cores, botões, campos e cartões com Jetpack Compose e Material 3.
-- Garantir que as telas tenham aparência consistente.
-- Testar a navegação entre as funcionalidades.
-
-**Entregas:** tela inicial, componentes visuais e navegação.
-
-### 2. Ana Beatriz Costa — Matérias e banco de dados
-
-- Criar o cadastro de matérias.
-- Implementar a entidade, o DAO e o banco Room das matérias.
-- Permitir cadastrar, listar e excluir matérias, conforme os requisitos definidos.
-- Integrar os dados à interface.
-- Tratar erros de persistência.
-
-**Entregas:** cadastro funcional de matérias e persistência local.
-
-### 3. Ketsoanny Nathielly — Tarefas e documentação
-
-- Desenvolver o cadastro de tarefas.
-- Permitir marcar tarefas como concluídas.
-- Implementar a persistência das tarefas, em conjunto com a arquitetura Room.
-- Atualizar `README.md`, `PRD.md` e `docs/USO_DE_IA.md`.
-- Acompanhar os commits e a organização da entrega.
-
-**Entregas:** tarefas funcionais e documentação atualizada.
-
-### 4. Ikalimony Helissa — Horários de estudo
-
-- Desenvolver o cadastro dos horários de estudo.
-- Criar os campos para matéria, dia e horário.
-- Implementar a listagem dos horários cadastrados.
-- Integrar os horários ao banco de dados Room, alinhando a implementação com Ana.
-- Testar cadastro, edição e exclusão, se essas operações estiverem previstas no PRD.
-
-**Entregas:** horários cadastrados e exibidos corretamente.
-
-### 5. Estefani Maria — Rotina e testes
-
-- Desenvolver a tela de visualização da rotina de estudos.
-- Reunir os horários, as matérias e as tarefas nas telas de consulta.
-- Integrar a rotina com as funcionalidades desenvolvidas pelas colegas.
-- Testar os fluxos principais e registrar os erros encontrados.
-- Preparar capturas de tela para `docs/telas/` e ajudar nos testes finais.
-
-**Entregas:** visualização da rotina integrada e testes documentados.
-
-> Essas responsabilidades são uma proposta inicial: ajustem conforme o que cada uma já implementou, para não duplicar trabalho nem descartar código existente.
+> **Projeto:** Estudae
+> **Turma:** 3º ano — Ensino Médio
+> **Grupo:** 6
+> **Data de preenchimento:** 30/09/2026
+> **Última atualização:** 14/10/2026 (nova divisão de atividades da equipe)
+> **Entrega final:** 10/12/2026
 
 ---
 
-## 2. Quem depende de quem?
+## 🧩 Bloco 1 — Nome e pitch do app
 
-| Grupo | Dependência |
-| ----- | ----------- |
-| Ana Beatriz + Ketsoanny + Ikalimony | Matérias, tarefas, horários e armazenamento no Room |
-| Larissa | Integração das telas e navegação |
-| Estefani + toda a equipe | Rotina integrada, testes e correções |
+**Nome do app:** Estudae
 
-A divisão não significa que as responsáveis precisam esperar todas as outras terminarem. Vocês podem desenvolver interfaces e modelos em paralelo, combinando antecipadamente os nomes das classes e os dados que cada tela vai receber.
+**Pitch em uma frase:**
+
+> "O **Estudae** ajuda estudantes a organizar seus horários, matérias e tarefas de estudo sem precisar usar anotações espalhadas ou vários aplicativos."
 
 ---
 
-## 3. Cronograma até a entrega
+## 😖 Bloco 2 — Problema
 
-Considerando o prazo de 14/10/2026 e os marcos do professor:
+* Estudantes têm dificuldade para organizar o tempo entre diferentes matérias, atividades e provas.
+* Horários e tarefas podem ser esquecidos quando ficam anotados em lugares diferentes.
 
-| Período | Prioridade | Responsáveis |
-| ------- | ---------- | ------------ |
-| 14–18/10 | Finalizar tarefas, matérias, horários e telas principais | Todas |
-| Até 21/10 | App compilando, lista de dados, ação do usuário e tratamento de erros | Todas |
-| 22/10–11/11 | Consolidar Room e mensagens de erro | Ana, Ketsoanny e Ikalimony |
-| 12–25/11 | Identidade visual, testes do APK e correções | Larissa e Estefani, com todas |
-| 26/11–02/12 | Documentação, ícone, AAB e materiais da loja | Ketsoanny e Estefani, com todas |
-| 03–10/12 | Correções finais, tag `v1.0`, Release e apresentação | Todas |
+**Como esse problema é resolvido hoje (sem o app)?**
+
+* Os estudantes utilizam cadernos, agendas, aplicativos de notas ou tentam memorizar seus horários e tarefas.
 
 ---
 
-## 4. Como registrar as atividades no GitHub
+## 👥 Bloco 3 — Público-alvo
 
-Cada integrante deve criar **Issues** para suas tarefas, com uma responsável definida, e trabalhar em uma **branch própria**.
+* **Perfil principal:** estudantes, principalmente alunos do Ensino Médio, que precisam organizar sua rotina de estudos.
+* **Quando/onde usam:** em casa, na escola ou em qualquer momento em que precisem planejar ou consultar seus estudos.
+* **Uma pessoa real que testaria o app:** um estudante de fora do grupo, convidado posteriormente para testar o `.apk`.
 
-| Integrante | Branch sugerida |
-| ---------- | --------------- |
-| Larissa | `feat/tela-inicial` |
+---
+
+## 💡 Bloco 4 — Solução em uma tela
+
+* **A tela principal lista:** os próximos horários de estudo e as tarefas pendentes.
+* **A ação principal do usuário é:** adicionar um horário de estudo ou uma tarefa.
+* **Depois de agir, o usuário vê:** o novo item organizado na sua rotina de estudos.
+
+---
+
+## ✅ Bloco 5 — Funcionalidades do MVP
+
+| #  | Funcionalidade                 | Essencial? | Responsável principal   |
+| -- | ------------------------------ | ---------- | ----------------------- |
+| F1 | Cadastrar matérias             | Sim        | **Ana Beatriz Costa**   |
+| F2 | Cadastrar horários de estudo   | Sim        | **Ikalimony Helissa**   |
+| F3 | Cadastrar e concluir tarefas   | Sim        | **Ketsoanny Nathielly** |
+| F4 | Visualizar a rotina de estudos | Sim        | **Estefani Maria**      |
+
+A tela inicial, a navegação e o padrão visual que sustentam F1–F4 ficam com **Larissa Vitoria da Silva B3** (ver Bloco 9).
+
+> **Importante:** o responsável principal coordena e explica aquela parte, mas **todos os integrantes programam e revisam o projeto**.
+
+---
+
+## 🚫 Bloco 6 — Fora do escopo
+
+Para manter o projeto dentro do prazo, o Estudae **não terá nesta versão**:
+
+* ❌ Login ou cadastro de usuários.
+* ❌ Notificações e alarmes.
+* ❌ Sincronização com Google Agenda ou outros serviços.
+* ❌ Inteligência artificial para criar automaticamente o cronograma.
+* ❌ Sistema de mensagens ou interação entre usuários.
+
+---
+
+## ⚙️ Bloco 7 — Caminho técnico
+
+### Tecnologia escolhida
+
+* [x] **Opção A — Room:** dados salvos no próprio celular.
+* [ ] **Opção B — Retrofit**
+* [ ] **Opção C — Desafio**
+
+### Por que Room?
+
+O Estudae precisa armazenar localmente as matérias, horários e tarefas do estudante. O Room permite que esses dados continuem disponíveis no aplicativo depois que ele for fechado.
+
+### Bibliotecas utilizadas
+
+* **Kotlin**
+* **Jetpack Compose**
+* **Material 3**
+* **Navigation Compose**
+* **Room**
+* **KSP**
+* **Kotlin Coroutines**
+* **Flow**
+
+### Tratamento de erros
+
+**Pode falhar:**
+
+* Salvamento ou leitura de informações no banco de dados.
+* Tentativa de salvar um formulário com campos obrigatórios vazios.
+
+**O usuário vê a mensagem:**
+
+> "Não foi possível salvar. Verifique os dados e tente novamente."
+
+---
+
+## 🎨 Bloco 8 — Identidade visual
+
+| Item                             | Definição do grupo                                                                 |
+| -------------------------------- | ---------------------------------------------------------------------------------- |
+| **Nome exibido (`strings.xml`)** | Estudae                                                                            |
+| **Cor principal (`Color.kt`)**   | `#6C63FF`                                                                          |
+| **Ideia do ícone**               | Livro aberto combinado com um relógio, representando estudo e organização do tempo |
+| **`applicationId`**              | `br.edu.ifpe.estudae`                                                              |
+| **Versão inicial**               | `1.0` (`versionCode 1`)                                                            |
+
+### Identidade
+
+A identidade visual será **jovem, simples e organizada**, utilizando elementos relacionados a estudo, planejamento e tempo.
+
+---
+
+## 👤 Bloco 9 — Equipe, papéis e riscos
+
+### Divisão da equipe
+
+| Integrante                      | Papel principal               | Responsável por                                                                                   | Entregas                                       |
+| ------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **Larissa Vitoria da Silva B3** | Dev / interface e navegação   | Tela inicial, navegação entre telas, padronização visual com Compose e Material 3                 | Tela inicial, componentes visuais e navegação  |
+| **Ana Beatriz Costa**           | Dev / matérias e dados        | Cadastro de matérias, entidade, DAO e banco Room, integração com a interface, erros de persistência | Cadastro de matérias e persistência local      |
+| **Ketsoanny Nathielly**         | Dev / tarefas e documentação  | Cadastro de tarefas, conclusão de tarefas, persistência com Room, `README.md`, `PRD.md` e `docs/USO_DE_IA.md`, acompanhamento dos commits | Tarefas funcionais e documentação atualizada   |
+| **Ikalimony Helissa**           | Dev / horários de estudo      | Cadastro de horários (matéria, dia e horário), listagem, integração com Room alinhada com Ana     | Horários cadastrados e exibidos corretamente   |
+| **Estefani Maria**              | Dev / rotina e testes         | Tela de visualização da rotina, integração de horários, matérias e tarefas, testes e capturas de tela em `docs/telas/` | Rotina integrada e testes documentados         |
+
+> **Todos programam.** A divisão define quem acompanha e responde principalmente por cada parte, não quem trabalha sozinho.
+
+### Dependências entre as partes
+
+| Grupo                                  | Dependência                                         |
+| -------------------------------------- | --------------------------------------------------- |
+| Ana Beatriz + Ketsoanny + Ikalimony    | Matérias, tarefas, horários e armazenamento no Room |
+| Larissa                                | Integração das telas e navegação                    |
+| Estefani + toda a equipe               | Rotina integrada, testes e correções                |
+
+As partes podem ser feitas em paralelo, combinando antes os nomes das classes e os dados que cada tela vai receber.
+
+### Registro no GitHub
+
+Cada integrante cria **Issues** para suas tarefas e trabalha em uma **branch própria**. Como o professor avalia o histórico de commits, cada uma registra suas próprias alterações.
+
+| Integrante  | Branch sugerida          |
+| ----------- | ------------------------ |
+| Larissa     | `feat/tela-inicial`      |
 | Ana Beatriz | `feat/cadastro-materias` |
-| Ketsoanny | `feat/cadastro-tarefas` |
-| Ikalimony | `feat/horarios-estudo` |
-| Estefani | `feat/visualizar-rotina` |
+| Ketsoanny   | `feat/cadastro-tarefas`  |
+| Ikalimony   | `feat/horarios-estudo`   |
+| Estefani    | `feat/visualizar-rotina` |
 
-Ao terminar cada parte, a responsável deve:
+### Riscos e planos B
 
-1. Testar a funcionalidade.
-2. Fazer um commit com mensagem clara.
-3. Enviar a branch para revisão.
+| Risco                                | Plano B                                                                                   |
+| ------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Dificuldade na implementação do Room | Reduzir a quantidade de dados e priorizar as funcionalidades essenciais                   |
+| Integração das partes causar erros   | Fazer commits pequenos, testar cada funcionalidade e revisar o código antes da integração |
+| Alguma funcionalidade ficar atrasada | Priorizar as F1–F4 e retirar qualquer funcionalidade extra                                |
+| Problemas no build ou APK            | Manter versões estáveis e testar o projeto a cada marco                                   |
+
+---
+
+## 🤖 Bloco 10 — Acordo de trabalho com IA
+
+A implementação poderá utilizar o **Gemini no Android Studio**, mas os integrantes serão responsáveis por compreender, revisar e testar o código gerado.
+
+### Três regras do nosso `AGENTS.md`
+
+1. **A IA deve seguir o escopo definido no `CANVAS.md` e no `PRD.md` e não criar funcionalidades não aprovadas pelo grupo.**
+2. **Nenhum código gerado pela IA será aceito sem que o integrante responsável leia, teste e compreenda a alteração.**
+3. **A IA não deve adicionar bibliotecas, modificar a arquitetura ou alterar tecnologias do projeto sem autorização do grupo.**
+
+### Combinados do grupo
+
+* [x] Ninguém clica *Accept* no Agent Mode sem ler a mudança inteira.
+* [x] Quem aceitou o código escreve o comentário de fronteira do arquivo.
+* [x] Antes de cada marco, revisamos juntos: alguém aqui não entende alguma parte?
+* [x] Nenhuma chave de API ou senha vai para o prompt.
+* [x] Cada integrante deve testar sua alteração antes do commit.
+* [x] Cada integrante deve saber explicar as partes do código pelas quais ficou responsável.
+
+### Como vamos garantir que todos entendem tudo
+
+O integrante responsável por cada funcionalidade deverá apresentar a implementação aos demais integrantes, explicando o funcionamento antes da integração. Os outros integrantes poderão revisar o código e fazer perguntas antes do commit ou merge.
+
+---
+
+## 🗓️ Bloco 11 — Marcos até 10/12
+
+| Marco                                                  | Prazo     | Como se comprova no GitHub                          | Foco da equipe                                              |
+| ------------------------------------------------------ | --------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| **M1 — Canvas preenchido + repositório criado**        | 16/09     | `CANVAS.md` no `main`                               | Todas                                                       |
+| **M2 — PRD aprovado + telas rascunhadas**              | 30/09     | `PRD.md` + imagens em `docs/`                       | Todas                                                       |
+| **M3 — Funcionalidade base rodando**                   | 21/10     | Tela principal lista dados + 1 ação + `try/catch`   | Todas (14–18/10: finalizar telas principais e cadastros)    |
+| **M4 — Dados completos com Room e erros tratados**     | 11/11     | Commits da camada de dados                          | Ana, Ketsoanny e Ikalimony (22/10–11/11)                    |
+| **M5 — Identidade visual + `.apk` de release testado** | 25/11     | Ícone, cores e `.apk` testado por 2 pessoas de fora | Larissa e Estefani, com todas (12–25/11)                    |
+| **M6 — `.aab` + material de loja + `README.md`**       | 02/12     | Pasta `loja/` + `README.md` completo                | Ketsoanny e Estefani, com todas (26/11–02/12)               |
+| **Entrega e apresentação**                             | **10/12** | Tag `v1.0` no repositório                           | Todas (03–10/12: correções finais, tag, Release, apresentação) |
+
+---
+
+## 🏁 Bloco 12 — Definição de pronto
+
+O grupo considerará o Estudae pronto quando:
+
+* [ ] O app abre e não fecha sozinho depois de 5 minutos de uso.
+* [ ] A tela principal mostra dados reais salvos no Room.
+* [ ] O usuário consegue cadastrar e visualizar matérias.
+* [ ] O usuário consegue cadastrar horários de estudo.
+* [ ] O usuário consegue cadastrar e concluir tarefas.
+* [ ] A ação principal funciona e o resultado aparece na tela.
+* [ ] Quando algo falha, aparece uma mensagem clara — o app não quebra.
+* [ ] O app possui nome, ícone e identidade visual próprios.
+* [ ] Duas pessoas de fora do grupo instalaram o `.apk` e conseguiram utilizá-lo sem explicação.
+* [ ] O `README.md` explica o que o app faz, como foi desenvolvido e como gerar o build.
+* [ ] O `docs/USO_DE_IA.md` e o `AGENTS.md` estão preenchidos.
+* [ ] Cada integrante consegue abrir o projeto e fazer uma pequena alteração sozinho.
+* [ ] Todo arquivo necessário possui o comentário de fronteira escrito pelo grupo.
+
+---
+
+## ✍️ Validação do professor
+
+|                 |                                                         |
+| --------------- | ------------------------------------------------------- |
+| **Data**        |                                                         |
+| **Situação**    | ( ) Aprovado    ( ) Aprovado com ajustes    ( ) Refazer |
+| **Observações** |                                                         |
+

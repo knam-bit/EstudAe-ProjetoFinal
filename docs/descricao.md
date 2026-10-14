@@ -1,14 +1,27 @@
-O EstudAê é um aplicativo Android desenvolvido como Projeto Final do 3º ano do Ensino Médio, com o objetivo de ajudar estudantes a organizar e acompanhar sua rotina de estudos de forma simples e prática.
+Estudae: sua rotina de estudos, organizada
 
-O aplicativo permite cadastrar matérias, planejar horários de estudo, registrar tarefas e marcar atividades como concluídas. Além disso, oferece uma visualização da rotina de estudos, reunindo as principais informações acadêmicas em um único lugar.
+Perdeu o prazo de um trabalho? Esqueceu qual matéria estudar hoje? O Estudae foi feito para resolver isso. É um aplicativo simples para estudantes do Ensino Médio organizarem matérias, horários e tarefas em um só lugar, direto no celular.
 
-Desenvolvido com Kotlin, Jetpack Compose e Room Database, o EstudAê busca facilitar o planejamento diário dos estudantes do Ensino Médio, incentivando a organização, a autonomia e o acompanhamento das atividades escolares.
+O que você pode fazer
 
-Principais funcionalidades:
-Cadastro e organização de matérias.
-Planejamento de horários de estudo.
-Registro e gerenciamento de tarefas.
-Marcação de tarefas como concluídas.
-Visualização da rotina de estudos.
+📚 Cadastrar suas matérias. Adicione as disciplinas que você estuda, como Matemática, Português, Biologia ou História, e mantenha tudo separado por matéria.
 
-O EstudAê tem como propósito tornar a organização dos estudos mais acessível, ajudando os estudantes a acompanhar suas atividades e administrar melhor seu tempo.
+🕐 Definir horários de estudo. Escolha o dia da semana e a hora em que você quer estudar cada matéria, e monte uma rotina que cabe no seu dia.
+
+📝 Criar tarefas. Anote o que precisa fazer, como lista de exercícios, leitura ou revisão para a prova, e ligue cada tarefa a uma matéria.
+
+✅ Marcar tarefas como concluídas. Toque na tarefa quando terminar e acompanhe o que já foi feito e o que ainda falta.
+
+📅 Ver sua rotina de estudos. Veja seus horários e tarefas organizados em uma tela, para entender como está a sua semana.
+
+Feito para ser simples
+
+O Estudae não tem cadastro, não pede login e não tem anúncios. Abra o app e comece a organizar seus estudos em segundos.
+
+Seus dados ficam com você
+
+Tudo o que você escreve fica salvo somente no seu celular. O app não precisa de internet e não envia informações para ninguém.
+
+Quem fez
+
+O Estudae é um projeto de alunas do 3º ano do Ensino Médio: Larissa Vitoria da Silva B3, Ana Beatriz Costa, Ketsoanny Nathielly, Ikalimony Helissa e Estefani Maria. Foi criado para ajudar colegas a estudar com mais organização e menos estresse.

@@ -4,7 +4,7 @@
 | ----------------------- | -------------------------------------------------------------------------- |
 | **App**                 | Estudae                                                                    |
 | **Grupo**               | 6                                                                          |
-| **Autores**             | Ketsoanny Nathielly, Ana Beatriz Costa e Larissa Vitoria
+| **Autores**             | Ketsoanny Nathielly, Ana Beatriz Costa, Larissa Vitoria, Ikalímony Helissa e Estefani Maria
 | **Versão do documento** | 1.0                                                                        |
 | **Última atualização**  | 30/09/2026                                                                 |
 | **Status**              | ( ) Rascunho    ( ) Em revisão    ( ) Aprovado                             |
@@ -373,7 +373,7 @@ A IA poderá auxiliar na escrita, explicação, correção e organização do c�
 
 | Parte do código                       | Responsável         |
 | ------------------------------------- | ------------------- |
-| **Telas e navegação (`ui/`)**         | Ketsoanny Nathielly |
+| **Telas e navegação (`ui/`)**         | Ketsoanny Nathielly + Larissa Vitória |
 | **Dados e Room (`data/` e `model/`)** | Ana Beatriz Costa   |
 | **Horários e integração da rotina**   | Estefani Maria      |
 | **Tarefas, testes e documentação**    | Ikalimony Helissa   |

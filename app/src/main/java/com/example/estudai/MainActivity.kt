@@ -16,6 +16,8 @@ import com.example.estudai.data.AppDatabase
 import com.example.estudai.data.Materia
 import com.example.estudai.ui.theme.EstudaiTheme
 import kotlinx.coroutines.launch
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 

@@ -1,3 +1,4 @@
+
 package com.example.estudai
 
 import android.os.Bundle
@@ -18,13 +19,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import com.example.estudai.data.AppDatabase
 import com.example.estudai.data.Materia
 import com.example.estudai.ui.TelaMaterias
 import com.example.estudai.ui.TelaRotina
 import com.example.estudai.ui.TelaTarefas
 import com.example.estudai.ui.theme.EstudaiTheme
-import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
 private enum class Tela(
@@ -118,14 +119,4 @@ fun EstudaiApp(
             }
         }
     }
-}
-
-@Composable
-fun TelaTarefas() {
-    TODO("Not yet implemented")
-}
-
-@Composable
-fun TelaRotina() {
-    TODO("Not yet implemented")
 }

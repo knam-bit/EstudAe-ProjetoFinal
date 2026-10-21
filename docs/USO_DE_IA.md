@@ -20,12 +20,16 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 
 ## Registro
 
+## Registro de Uso de Inteligência Artificial
+
+## Registro de Uso de Inteligência Artificial
+
 | Data | Integrante | O que pedimos à IA | O que a IA gerou | O que aceitamos / mudamos | Testado? | Commit |
 |---|---|---|---|---|---|---|
-| __/__/2026 | _nome_ | _ex.: criar a entidade Materia no Room_ | _ex.: classe Materia e MateriaDao_ | _ex.: aceitamos; trocamos o nome do campo_ | Sim / Não | _hash ou link_ |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
+| 21/10/2026 | Ana Beatriz | Criar a entidade `Materia` com Room. | Classe `Materia.kt` com ID, nome, professor e descrição. | Aceitamos a estrutura da entidade. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Criar o DAO para gerenciar as matérias. | Classe `MateriaDao.kt` com operações para inserir, consultar e excluir. | Utilizamos as operações necessárias para gerenciar as matérias. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Configurar o banco de dados Room. | Classe `AppDatabase.kt` e configuração das dependências no Gradle. | Mantivemos a configuração compatível com o projeto. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Criar e integrar a tela de matérias. | Tela `TelaMaterias.kt` integrada ao `MainActivity.kt`. | Adaptamos o código à estrutura existente do aplicativo. | Sim | `f659125` |
 
 ## O que aprendemos
 

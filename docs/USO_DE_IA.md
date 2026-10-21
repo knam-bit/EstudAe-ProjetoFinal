@@ -22,8 +22,6 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 
 ## Registro de Uso de Inteligência Artificial
 
-## Registro de Uso de Inteligência Artificial
-
 | Data | Integrante | O que pedimos à IA | O que a IA gerou | O que aceitamos / mudamos | Testado? | Commit |
 |---|---|---|---|---|---|---|
 | 21/10/2026 | Ana Beatriz | Criar a entidade `Materia` com Room. | Classe `Materia.kt` com ID, nome, professor e descrição. | Aceitamos a estrutura da entidade. | Sim | Verificar no Git |

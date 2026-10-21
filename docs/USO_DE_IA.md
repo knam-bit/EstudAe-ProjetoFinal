@@ -8,7 +8,8 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | Ferramenta | Para quê |
 |---|---|
 | Gemini (Android Studio / Agent Mode) | Ajuda na escrita e organização do código |
-| _(preencher se usarem outra)_ | |
+| _ChatGpt_ | |
+|Claude ||
 
 ## Como a equipe usa a IA
 

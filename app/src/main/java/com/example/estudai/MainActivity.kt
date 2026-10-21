@@ -1,135 +1,131 @@
-
 package com.example.estudai
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
 import com.example.estudai.data.AppDatabase
 import com.example.estudai.data.Materia
+import com.example.estudai.ui.TelaMaterias
+import com.example.estudai.ui.TelaRotina
+import com.example.estudai.ui.TelaTarefas
 import com.example.estudai.ui.theme.EstudaiTheme
-import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+
+private enum class Tela(
+    val titulo: String,
+    val simbolo: String
+) {
+    MATERIAS("Matérias", "📚"),
+    ROTINA("Rotina", "🗓"),
+    TAREFAS("Tarefas", "✓")
+}
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val dao = AppDatabase.getDatabase(applicationContext).materiaDao()
+        val dao = AppDatabase
+            .getDatabase(applicationContext)
+            .materiaDao()
 
         setContent {
             EstudaiTheme {
-                TelaMaterias(
-                    dao = dao,
-                    aoInserir = { materia ->
-                        lifecycleScope.launch {
-                            dao.inserir(materia)
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    EstudaiApp(
+                        dao = dao,
+                        aoInserirMateria = { materia ->
+                            lifecycleScope.launch {
+                                dao.inserir(materia)
+                            }
+                        },
+                        aoExcluirMateria = { materia ->
+                            lifecycleScope.launch {
+                                dao.excluir(materia)
+                            }
                         }
-                    },
-                    aoExcluir = { materia ->
-                        lifecycleScope.launch {
-                            dao.excluir(materia)
-                        }
-                    }
-                )
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun TelaMaterias(
+fun EstudaiApp(
     dao: com.example.estudai.data.MateriaDao,
-    aoInserir: (Materia) -> Unit,
-    aoExcluir: (Materia) -> Unit
+    aoInserirMateria: (Materia) -> Unit,
+    aoExcluirMateria: (Materia) -> Unit
 ) {
-    var nome by remember { mutableStateOf("") }
-    var professor by remember { mutableStateOf("") }
-
-    val materias by dao.listarTodas().collectAsState(initial = emptyList())
+    var telaAtual by remember {
+        mutableStateOf(Tela.MATERIAS)
+    }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = "Matérias do Estudai",
-                style = MaterialTheme.typography.headlineSmall
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = nome,
-                onValueChange = { nome = it },
-                label = { Text("Nome da matéria") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            OutlinedTextField(
-                value = professor,
-                onValueChange = { professor = it },
-                label = { Text("Nome do professor") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Button(
-                onClick = {
-                    if (nome.isNotBlank() && professor.isNotBlank()) {
-                        aoInserir(
-                            Materia(
-                                nome = nome.trim(),
-                                professor = professor.trim()
-                            )
-                        )
-                        nome = ""
-                        professor = ""
-                    }
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Salvar matéria")
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "Matérias cadastradas",
-                style = MaterialTheme.typography.titleMedium
-            )
-
-            LazyColumn {
-                items(materias, key = { it.id }) { materia ->
-                    ListItem(
-                        headlineContent = { Text(materia.nome) },
-                        supportingContent = { Text("Professor: ${materia.professor}") },
-                        trailingContent = {
-                            TextButton(onClick = { aoExcluir(materia) }) {
-                                Text("Excluir")
-                            }
+        bottomBar = {
+            NavigationBar {
+                Tela.values().forEach { tela ->
+                    NavigationBarItem(
+                        selected = telaAtual == tela,
+                        onClick = {
+                            telaAtual = tela
+                        },
+                        icon = {
+                            Text(tela.simbolo)
+                        },
+                        label = {
+                            Text(tela.titulo)
                         }
                     )
-                    HorizontalDivider()
                 }
             }
         }
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+        ) {
+            when (telaAtual) {
+                Tela.MATERIAS -> TelaMaterias(
+                    dao = dao,
+                    aoInserir = aoInserirMateria,
+                    aoExcluir = aoExcluirMateria
+                )
+
+                Tela.ROTINA -> TelaRotina()
+
+                Tela.TAREFAS -> TelaTarefas()
+            }
+        }
     }
+}
+
+@Composable
+fun TelaTarefas() {
+    TODO("Not yet implemented")
+}
+
+@Composable
+fun TelaRotina() {
+    TODO("Not yet implemented")
 }

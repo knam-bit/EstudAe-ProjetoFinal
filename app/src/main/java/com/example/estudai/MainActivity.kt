@@ -23,14 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.example.estudai.data.AppDatabase
-import com.example.estudai.data.HorarioEstudo
-import com.example.estudai.data.HorarioEstudoDao
 import com.example.estudai.data.Materia
 import com.example.estudai.data.MateriaDao
-import com.example.estudai.ui.TelaHorarios
 import com.example.estudai.ui.TelaMaterias
+import com.example.estudai.ui.TelaRotina
 import com.example.estudai.ui.theme.EstudaiTheme
 import kotlinx.coroutines.launch
+import com.example.estudai.ui.TelaTarefas
 
 private enum class Tela(
     val titulo: String,
@@ -47,7 +46,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val database = AppDatabase.getDatabase(applicationContext)
-
         val materiaDao = database.materiaDao()
         val horarioDao = database.horarioEstudoDao()
 
@@ -60,34 +58,14 @@ class MainActivity : ComponentActivity() {
                     EstudaiApp(
                         dao = materiaDao,
                         horarioDao = horarioDao,
-
                         aoInserirMateria = { materia ->
                             lifecycleScope.launch {
                                 materiaDao.inserir(materia)
                             }
                         },
-
                         aoExcluirMateria = { materia ->
                             lifecycleScope.launch {
                                 materiaDao.excluir(materia)
-                            }
-                        },
-
-                        aoInserirHorario = { horario ->
-                            lifecycleScope.launch {
-                                horarioDao.inserir(horario)
-                            }
-                        },
-
-                        aoAtualizarHorario = { horario ->
-                            lifecycleScope.launch {
-                                horarioDao.atualizar(horario)
-                            }
-                        },
-
-                        aoExcluirHorario = { horario ->
-                            lifecycleScope.launch {
-                                horarioDao.excluir(horario)
                             }
                         }
                     )
@@ -100,12 +78,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun EstudaiApp(
     dao: MateriaDao,
-    horarioDao: HorarioEstudoDao,
+    horarioDao: com.example.estudai.data.HorarioEstudoDao,
     aoInserirMateria: (Materia) -> Unit,
-    aoExcluirMateria: (Materia) -> Unit,
-    aoInserirHorario: (HorarioEstudo) -> Unit,
-    aoAtualizarHorario: (HorarioEstudo) -> Unit,
-    aoExcluirHorario: (HorarioEstudo) -> Unit
+    aoExcluirMateria: (Materia) -> Unit
 ) {
     var telaAtual by remember {
         mutableStateOf(Tela.MATERIAS)
@@ -143,12 +118,11 @@ fun EstudaiApp(
                     aoExcluir = aoExcluirMateria
                 )
 
-                Tela.ROTINA -> TelaHorarios(
-                    materiaDao = dao,
-                    horarioDao = horarioDao,
-                    aoInserir = aoInserirHorario,
-                    aoAtualizar = aoAtualizarHorario,
-                    aoExcluir = aoExcluirHorario
+                Tela.ROTINA -> TelaRotina(
+                    dao = horarioDao,
+                    onVoltar = {
+                        telaAtual = Tela.MATERIAS
+                    }
                 )
 
                 Tela.TAREFAS -> TelaTarefas()

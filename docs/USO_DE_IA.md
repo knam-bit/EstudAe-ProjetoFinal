@@ -23,8 +23,6 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 #
 # Guia de Uso da IA — EstudAe
 
-markdown
-```
 | Data | Integrante | O que pedimos à IA | O que a IA gerou | O que aceitamos / mudamos | Testado? | Commit |
 |------|------------|--------------------|------------------|---------------------------|----------|--------|
 | 07/10/2026 | Ketsoanny | Auxiliar na elaboração do PRD do EstudAe. | Apoio na organização dos requisitos e objetivos do aplicativo. | Elaborei e organizei o documento conforme a proposta do projeto. | Não se aplica | Não se aplica |
@@ -47,7 +45,6 @@ markdown
 | 21/10/2026 | Larissa Vitoria da Silva | Separar as telas do aplicativo em arquivos Kotlin. | Arquivos `TelaRotina.kt` e `TelaTarefas.kt`. | Organizamos as telas separadamente para facilitar a manutenção. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Implementar a navegação entre as telas. | Estrutura de navegação entre Matérias, Rotina e Tarefas. | Adaptamos a navegação à organização do projeto. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Organizar e enviar as alterações do Android Studio para o GitHub. | Orientações e comandos Git para adicionar arquivos, criar commits e sincronizar a branch `main`. | Preparamos as alterações locais para envio ao repositório remoto. | Verificar | Verificar no Git |
-```
 
 **Observação:** os commits das alterações de Larissa devem ser confirmados com `git log --oneline`. O teste de compilação e a integração final das telas devem ser marcados como concluídos somente após a verificação no Android Studio.
 

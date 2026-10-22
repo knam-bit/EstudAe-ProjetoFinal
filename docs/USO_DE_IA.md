@@ -46,7 +46,10 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | 21/10/2026 | Larissa Vitoria da Silva | Implementar a navegação entre as telas. | Estrutura de navegação entre Matérias, Rotina e Tarefas. | Adaptamos a navegação à organização do projeto. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Organizar e enviar as alterações do Android Studio para o GitHub. | Orientações e comandos Git para adicionar arquivos, criar commits e sincronizar a branch `main`. | Preparamos e enviamos alterações ao repositório remoto. | Verificar | Verificar no Git |
 | 22/10/2026 | Larissa Vitoria da Silva | Verificar o estado das alterações e sincronizar o projeto com o GitHub. | Orientações para conferir o Git, atualizar as alterações remotas e enviar os commits. | Sincronizamos as alterações com o repositório remoto e confirmamos o envio pelo terminal. | Parcial | `25303ad` |
-| 22/10/2026 | Larissa Vitoria
+| 22/10/2026 | Larissa Vitoria da Silva | Revisar a organização das telas e a navegação do EstudAe. | Orientações para verificar `MainActivity.kt`, `TelaInicial.kt`, `TelaRotina.kt` e `TelaTarefas.kt`. | Identificamos a necessidade de confirmar se as telas de rotina e tarefas estão implementadas e se os arquivos duplicados foram removidos. | Pendente | Verificar no Git |
+| 22/10/2026 | Larissa Vitoria da Silva | Atualizar o registro de uso de IA do projeto. | Sugestões para documentar as atividades realizadas, os resultados e os testes pendentes. | Organizamos os registros das atividades e identificamos o que ainda precisa ser validado. | Parcial | Verificar no Git |
+
+**Observação:** os campos marcados como “Verificar” ou “Pendente” devem ser atualizados após a conferência dos commits, da implementação e dos testes reais do aplicativo.
 
 **Observação:** os commits das alterações de Larissa devem ser confirmados com `git log --oneline`. O teste de compilação e a integração final das telas devem ser marcados como concluídos somente após a verificação no Android Studio.
 

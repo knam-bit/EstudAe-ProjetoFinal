@@ -1,4 +1,3 @@
-
 package com.example.estudai
 
 import android.os.Bundle
@@ -18,18 +17,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.example.estudai.data.AppDatabase
+import com.example.estudai.data.HorarioEstudoDao
 import com.example.estudai.data.Materia
 import com.example.estudai.data.MateriaDao
+import com.example.estudai.data.TarefaDao
 import com.example.estudai.ui.TelaMaterias
 import com.example.estudai.ui.TelaRotina
+import com.example.estudai.ui.TelaTarefas
 import com.example.estudai.ui.theme.EstudaiTheme
 import kotlinx.coroutines.launch
-import com.example.estudai.ui.TelaTarefas
 
 private enum class Tela(
     val titulo: String,
@@ -45,9 +44,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Obtém o banco de dados
         val database = AppDatabase.getDatabase(applicationContext)
+
+        // Obtém os DAOs
         val materiaDao = database.materiaDao()
         val horarioDao = database.horarioEstudoDao()
+        val tarefaDao = database.tarefaDao()
 
         setContent {
             EstudaiTheme {
@@ -58,11 +61,14 @@ class MainActivity : ComponentActivity() {
                     EstudaiApp(
                         dao = materiaDao,
                         horarioDao = horarioDao,
+                        tarefaDao = tarefaDao,
+
                         aoInserirMateria = { materia ->
                             lifecycleScope.launch {
                                 materiaDao.inserir(materia)
                             }
                         },
+
                         aoExcluirMateria = { materia ->
                             lifecycleScope.launch {
                                 materiaDao.excluir(materia)
@@ -78,7 +84,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun EstudaiApp(
     dao: MateriaDao,
-    horarioDao: com.example.estudai.data.HorarioEstudoDao,
+    horarioDao: HorarioEstudoDao,
+    tarefaDao: TarefaDao,
     aoInserirMateria: (Materia) -> Unit,
     aoExcluirMateria: (Materia) -> Unit
 ) {
@@ -106,42 +113,37 @@ fun EstudaiApp(
             }
         }
     ) { padding ->
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
         ) {
             when (telaAtual) {
-                Tela.MATERIAS -> TelaMaterias(
-                    dao = dao,
-                    aoInserir = aoInserirMateria,
-                    aoExcluir = aoExcluirMateria
-                )
 
-                Tela.ROTINA -> TelaRotina(
-                    dao = horarioDao,
-                    onVoltar = {
-                        telaAtual = Tela.MATERIAS
-                    }
-                )
+                Tela.MATERIAS -> {
+                    TelaMaterias(
+                        dao = dao,
+                        aoInserir = aoInserirMateria,
+                        aoExcluir = aoExcluirMateria
+                    )
+                }
 
-                Tela.TAREFAS -> TelaTarefas()
+                Tela.ROTINA -> {
+                    TelaRotina(
+                        dao = horarioDao,
+                        onVoltar = {
+                            telaAtual = Tela.MATERIAS
+                        }
+                    )
+                }
+
+                Tela.TAREFAS -> {
+                    TelaTarefas(
+                        dao = tarefaDao
+                    )
+                }
             }
         }
-    }
-}
-
-@Composable
-fun TelaTarefas() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Tela de tarefas em desenvolvimento.",
-            style = MaterialTheme.typography.bodyLarge
-        )
     }
 }

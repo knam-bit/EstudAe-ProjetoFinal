@@ -1,6 +1,7 @@
-# Registro de Uso de IA — Estudae
+# Registro de Uso de IA — EstudAê
 
 Este registro é obrigatório. Cada vez que a equipe usar IA de forma relevante, anote uma linha na tabela.
+
 As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 
 ## Ferramentas usadas
@@ -8,8 +9,8 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | Ferramenta | Para quê |
 |---|---|
 | Gemini (Android Studio / Agent Mode) | Ajuda na escrita e organização do código |
-| _ChatGpt_ | Auxílio na criação, organização e correção de código do aplicativo |
-| Claude | |
+| ChatGPT | Auxílio na criação, organização, explicação e correção de código do aplicativo |
+| Claude | Ferramenta disponível para auxiliar no desenvolvimento, quando utilizada |
 
 ## Como a equipe usa a IA
 
@@ -19,8 +20,6 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 - Nenhuma chave ou senha é enviada para a IA (ver `.aiexclude`).
 
 ## Registro
-
-# Guia de Uso da IA — EstudAe
 
 | Data | Integrante | O que pedimos à IA | O que a IA gerou | O que aceitamos / mudamos | Testado? | Commit |
 |---|---|---|---|---|---|---|
@@ -35,15 +34,10 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | 21/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Criar a tela de tarefas e horários. | Estrutura da interface em Kotlin para organizar tarefas e horários. | Desenvolvi e adaptei a tela de tarefas à estrutura do EstudAe. | Verificar | Verificar no Git |
 | 21/10/2026 | Ketsoanny | Criar ou ajustar a entidade de tarefas e horários. | Estrutura de dados para representar tarefas e horários. | Desenvolvi a entidade, mas preciso confirmar se foi registrada em um commit. | Verificar | Verificar no Git |
 | 21/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Testar o aplicativo EstudAe. | Orientações para verificar o funcionamento das telas e identificar possíveis erros. | Fui responsável por testar o aplicativo, verificar seu funcionamento e identificar possíveis problemas. | Sim | Verificar no Git |
-| Data | Responsável | Tarefa realizada | Resultado obtido | Decisão/avaliação | Uso de IA | Commit/observação |
-|---|---|---|---|---|---|---|
-| 21/10/2026 | Ana Beatriz | Criar a entidade `Materia` com Room. | Classe `Materia.kt` com ID, nome, professor e descrição. | Aceitamos a estrutura da entidade. | Sim | Verificar no Git |
-| 21/10/2026 | Ana Beatriz | Criar o DAO para gerenciar as matérias. | Classe `MateriaDao.kt` com operações para inserir, consultar, atualizar e excluir matérias. | Utilizamos as operações necessárias para gerenciar as matérias. | Sim | Verificar no Git |
-| 21/10/2026 | Ana Beatriz | Configurar o banco de dados Room. | Classe `AppDatabase.kt` e configuração das dependências no Gradle. | Mantivemos a configuração compatível com o projeto. | Sim | Verificar no Git |
-| 21/10/2026 | Ana Beatriz | Criar e integrar a tela de matérias. | Tela `TelaMaterias.kt` integrada ao `MainActivity.kt`. | Adaptamos o código à estrutura existente do aplicativo. | Sim | `f659125` |
-| 27/10/2026 | Ana Beatriz | Implementar a edição de matérias. | Adicionamos o botão Editar, o preenchimento dos campos com os dados existentes e a opção Salvar alterações. | Integramos a atualização ao DAO e ao `MainActivity.kt`. | Sim | Verificar no Git |
-| 27/10/2026 | Ana Beatriz | Registrar o uso de IA no projeto. | Atualização da tabela de registro de tarefas, resultados e utilização de IA no arquivo `USO_DE_IA.md`. | Registrar os prompts utilizados e conferir os commits correspondentes. | Sim | Verificar no Git |
-
+| 21/10/2026 | Ana Beatriz | Criar a entidade `Materia` com Room. | Classe `Materia.kt` com ID, nome, professor e descrição. | Aceitamos a estrutura da entidade para armazenar as matérias. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Criar o DAO para gerenciar as matérias. | Classe `MateriaDao.kt` com operações para inserir, consultar, atualizar e excluir matérias. | Utilizamos as operações necessárias para gerenciar as matérias no banco de dados. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Configurar o banco de dados Room. | Classe `AppDatabase.kt` e configuração das dependências no Gradle. | Mantivemos a configuração compatível com a estrutura do aplicativo. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Criar e integrar a tela de matérias. | Tela `TelaMaterias.kt` integrada ao `MainActivity.kt`. | Adaptamos a tela à estrutura existente do aplicativo. | Sim | `f659125` |
 | 21/10/2026 | Larissa Vitoria da Silva | Criar a tela inicial do EstudAe. | Arquivo `TelaInicial.kt` com a interface inicial do aplicativo. | Criamos um arquivo separado para organizar a tela inicial. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Organizar o `MainActivity.kt`. | Código para inicializar o aplicativo e organizar a exibição das telas. | Adaptamos a atividade principal para integrar as telas. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Separar as telas do aplicativo em arquivos Kotlin. | Arquivos `TelaRotina.kt` e `TelaTarefas.kt`. | Organizamos as telas separadamente para facilitar a manutenção. | Verificar | Verificar no Git |
@@ -52,11 +46,14 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | 22/10/2026 | Larissa Vitoria da Silva | Verificar o estado das alterações e sincronizar o projeto com o GitHub. | Orientações para conferir o Git, atualizar as alterações remotas e enviar os commits. | Sincronizamos as alterações com o repositório remoto e confirmamos o envio pelo terminal. | Parcial | `25303ad` |
 | 22/10/2026 | Larissa Vitoria da Silva | Revisar a organização das telas e a navegação do EstudAe. | Orientações para verificar `MainActivity.kt`, `TelaInicial.kt`, `TelaRotina.kt` e `TelaTarefas.kt`. | Identificamos a necessidade de confirmar se as telas de rotina e tarefas estão implementadas e se os arquivos duplicados foram removidos. | Pendente | Verificar no Git |
 | 22/10/2026 | Larissa Vitoria da Silva | Atualizar o registro de uso de IA do projeto. | Sugestões para documentar as atividades realizadas, os resultados e os testes pendentes. | Organizamos os registros das atividades e identificamos o que ainda precisa ser validado. | Parcial | Verificar no Git |
+| 27/10/2026 | Ana Beatriz | Implementar a edição de matérias. | Inclusão da opção de editar uma matéria, alterar os campos e salvar as modificações. | Integramos a atualização dos dados ao DAO e à tela de matérias. | Sim | `d18e693` |
+| 27/10/2026 | Ana Beatriz | Integrar a atualização de matérias ao `MainActivity.kt`. | Encaminhamento da função de atualização para o DAO utilizando `lifecycleScope` e corrotinas. | Adaptamos a atividade principal para permitir a atualização das matérias no banco de dados. | Sim | `d18e693` |
+| 27/10/2026 | Ana Beatriz | Resolver conflito de integração entre as alterações locais e as atualizações do GitHub. | Orientações para revisar o conflito no `MainActivity.kt` durante o rebase da branch `main`. | Mantivemos a integração das telas de Matérias, Rotina e Tarefas e a função de atualização de matérias. | Parcial | Rebase em andamento; confirmar no Git |
 | 27/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Criar e organizar a tela inicial do EstudAe. | Auxílio na criação da `TelaInicial.kt` com imagem de capa, mensagem de boas-vindas e opções para Matérias, Horários, Tarefas e Rotina. | Desenvolvemos e organizamos a interface inicial conforme a estrutura do projeto. | Parcial | Verificar no Git |
 | 27/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Adicionar a imagem de capa do EstudAe. | Orientações para adicionar a imagem na pasta `res/drawable` e utilizá-la na `TelaInicial.kt`. | Adicionamos a imagem de capa e corrigimos o nome do arquivo para `capa_estudae.png`. | Parcial | Verificar no Git |
 | 27/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Corrigir a `TelaInicial.kt` para evitar erros de compilação. | Revisão do código, correção de imports e substituição dos ícones por componentes mais simples. | Ajustamos o código da tela inicial para facilitar a compilação e integração com o projeto. | Parcial | Verificar no Git |
 | 27/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Criar uma tela de Rotinas funcional para o EstudAe. | Orientações e estrutura de código para implementar a tela de Rotinas de acordo com a organização do projeto. | Adaptamos a tela de Rotinas para funcionar com a estrutura existente do aplicativo. | Verificar | Verificar no Git |
-
+| 27/10/2026 | Ana Beatriz | Atualizar o registro de uso de IA do projeto. | Organização das atividades realizadas, resultados obtidos e decisões tomadas durante o desenvolvimento. | Registramos as tarefas realizadas com auxílio de IA e mantivemos os commits para conferência. | Sim | Verificar no Git |
 
 ## O que aprendemos
 

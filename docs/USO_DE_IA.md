@@ -52,9 +52,6 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | 27/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Corrigir a `TelaInicial.kt` para evitar erros de compilação. | Revisão do código, correção de imports e substituição dos ícones por componentes mais simples. | Ajustamos o código da tela inicial para facilitar a compilação e integração com o projeto. | Parcial | Verificar no Git |
 | 27/10/2026 | IKALIMONY HELISSA MELO DA SILVA | Criar uma tela de Rotinas funcional para o EstudAe. | Orientações e estrutura de código para implementar a tela de Rotinas de acordo com a organização do projeto. | Adaptamos a tela de Rotinas para funcionar com a estrutura existente do aplicativo. | Verificar | Verificar no Git |
 
-**Observação:** os campos marcados como “Verificar” ou “Pendente” devem ser atualizados após a conferência dos commits, da implementação e dos testes reais do aplicativo.
-
-**Observação:** os commits das alterações de Larissa devem ser confirmados com `git log --oneline`. O teste de compilação e a integração final das telas devem ser marcados como concluídos somente após a verificação no Android Studio.
 
 ## O que aprendemos
 

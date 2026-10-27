@@ -36,10 +36,15 @@ As regras gerais estão em [`AGENTS.md`](../AGENTS.md).
 | 21/10/2026 | iKALIMONY HELISSA MELO DA SILVA | Criar a tela de tarefas e horários. | Estrutura da interface em Kotlin para organizar tarefas e horários. | Desenvolvi e adaptei a tela de tarefas à estrutura do EstudAe. | Verificar | Verificar no Git |
 | 21/10/2026 | Ketsoanny | Criar ou ajustar a entidade de tarefas e horários. | Estrutura de dados para representar tarefas e horários. | Desenvolvi a entidade, mas preciso confirmar se foi registrada em um commit. | Verificar | Verificar no Git |
 | 21/10/2026 | iKALIMONY HELISSA MELO DA SILVA | Testar o aplicativo EstudAe. | Orientações para verificar o funcionamento das telas e identificar possíveis erros. | Fui responsável por testar o aplicativo, verificar seu funcionamento e identificar possíveis problemas. | Sim | Verificar no Git |
+| Data | Responsável | Tarefa realizada | Resultado obtido | Decisão/avaliação | Uso de IA | Commit/observação |
+|---|---|---|---|---|---|---|
 | 21/10/2026 | Ana Beatriz | Criar a entidade `Materia` com Room. | Classe `Materia.kt` com ID, nome, professor e descrição. | Aceitamos a estrutura da entidade. | Sim | Verificar no Git |
-| 21/10/2026 | Ana Beatriz | Criar o DAO para gerenciar as matérias. | Classe `MateriaDao.kt` com operações para inserir, consultar e excluir. | Utilizamos as operações necessárias para gerenciar as matérias. | Sim | Verificar no Git |
+| 21/10/2026 | Ana Beatriz | Criar o DAO para gerenciar as matérias. | Classe `MateriaDao.kt` com operações para inserir, consultar, atualizar e excluir matérias. | Utilizamos as operações necessárias para gerenciar as matérias. | Sim | Verificar no Git |
 | 21/10/2026 | Ana Beatriz | Configurar o banco de dados Room. | Classe `AppDatabase.kt` e configuração das dependências no Gradle. | Mantivemos a configuração compatível com o projeto. | Sim | Verificar no Git |
 | 21/10/2026 | Ana Beatriz | Criar e integrar a tela de matérias. | Tela `TelaMaterias.kt` integrada ao `MainActivity.kt`. | Adaptamos o código à estrutura existente do aplicativo. | Sim | `f659125` |
+| 27/10/2026 | Ana Beatriz | Implementar a edição de matérias. | Adicionamos o botão Editar, o preenchimento dos campos com os dados existentes e a opção Salvar alterações. | Integramos a atualização ao DAO e ao `MainActivity.kt`. | Sim | Verificar no Git |
+| 27/10/2026 | Ana Beatriz | Registrar o uso de IA no projeto. | Atualização da tabela de registro de tarefas, resultados e utilização de IA no arquivo `USO_DE_IA.md`. | Registrar os prompts utilizados e conferir os commits correspondentes. | Sim | Verificar no Git |
+
 | 21/10/2026 | Larissa Vitoria da Silva | Criar a tela inicial do EstudAe. | Arquivo `TelaInicial.kt` com a interface inicial do aplicativo. | Criamos um arquivo separado para organizar a tela inicial. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Organizar o `MainActivity.kt`. | Código para inicializar o aplicativo e organizar a exibição das telas. | Adaptamos a atividade principal para integrar as telas. | Verificar | Verificar no Git |
 | 21/10/2026 | Larissa Vitoria da Silva | Separar as telas do aplicativo em arquivos Kotlin. | Arquivos `TelaRotina.kt` e `TelaTarefas.kt`. | Organizamos as telas separadamente para facilitar a manutenção. | Verificar | Verificar no Git |

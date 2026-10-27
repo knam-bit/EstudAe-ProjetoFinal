@@ -73,6 +73,11 @@ class MainActivity : ComponentActivity() {
                             lifecycleScope.launch {
                                 materiaDao.excluir(materia)
                             }
+                        },
+                        aoAtualizarMateria = { materia ->
+                            lifecycleScope.launch {
+                                materiaDao.atualizar(materia)
+                            }
                         }
                     )
                 }
@@ -87,7 +92,8 @@ fun EstudaiApp(
     horarioDao: HorarioEstudoDao,
     tarefaDao: TarefaDao,
     aoInserirMateria: (Materia) -> Unit,
-    aoExcluirMateria: (Materia) -> Unit
+    aoExcluirMateria: (Materia) -> Unit,
+    aoAtualizarMateria: (Materia) -> Unit
 ) {
     var telaAtual by remember {
         mutableStateOf(Tela.MATERIAS)
@@ -120,12 +126,12 @@ fun EstudaiApp(
                 .padding(padding)
         ) {
             when (telaAtual) {
-
                 Tela.MATERIAS -> {
                     TelaMaterias(
                         dao = dao,
                         aoInserir = aoInserirMateria,
-                        aoExcluir = aoExcluirMateria
+                        aoExcluir = aoExcluirMateria,
+                        aoAtualizar = aoAtualizarMateria
                     )
                 }
 
@@ -144,6 +150,3 @@ fun EstudaiApp(
                     )
                 }
             }
-        }
-    }
-}

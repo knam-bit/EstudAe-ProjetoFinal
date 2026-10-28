@@ -24,6 +24,7 @@ import com.example.estudai.data.HorarioEstudoDao
 import com.example.estudai.data.Materia
 import com.example.estudai.data.MateriaDao
 import com.example.estudai.data.TarefaDao
+import com.example.estudai.ui.TelaInicial
 import com.example.estudai.ui.TelaMaterias
 import com.example.estudai.ui.TelaRotina
 import com.example.estudai.ui.TelaTarefas
@@ -34,6 +35,7 @@ private enum class Tela(
     val titulo: String,
     val simbolo: String
 ) {
+    INICIO("Início", "🏠"),
     MATERIAS("Matérias", "📚"),
     ROTINA("Rotina", "🗓"),
     TAREFAS("Tarefas", "✓")
@@ -44,10 +46,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Obtém o banco de dados
         val database = AppDatabase.getDatabase(applicationContext)
 
-        // Obtém os DAOs
         val materiaDao = database.materiaDao()
         val horarioDao = database.horarioEstudoDao()
         val tarefaDao = database.tarefaDao()
@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
                                 materiaDao.excluir(materia)
                             }
                         },
+
                         aoAtualizarMateria = { materia ->
                             lifecycleScope.launch {
                                 materiaDao.atualizar(materia)
@@ -96,7 +97,7 @@ fun EstudaiApp(
     aoAtualizarMateria: (Materia) -> Unit
 ) {
     var telaAtual by remember {
-        mutableStateOf(Tela.MATERIAS)
+        mutableStateOf(Tela.INICIO)
     }
 
     Scaffold(
@@ -126,6 +127,11 @@ fun EstudaiApp(
                 .padding(padding)
         ) {
             when (telaAtual) {
+
+                Tela.INICIO -> {
+                    TelaInicial()
+                }
+
                 Tela.MATERIAS -> {
                     TelaMaterias(
                         dao = dao,
@@ -139,7 +145,7 @@ fun EstudaiApp(
                     TelaRotina(
                         dao = horarioDao,
                         onVoltar = {
-                            telaAtual = Tela.MATERIAS
+                            telaAtual = Tela.INICIO
                         }
                     )
                 }
@@ -150,3 +156,6 @@ fun EstudaiApp(
                     )
                 }
             }
+        }
+    }
+}

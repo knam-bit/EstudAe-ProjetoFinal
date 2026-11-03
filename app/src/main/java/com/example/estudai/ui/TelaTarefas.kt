@@ -47,10 +47,7 @@ fun TelaTarefas(
     var titulo by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
     var dataEntrega by remember { mutableStateOf("") }
-
-    var tarefaExcluir by remember {
-        mutableStateOf<Tarefa?>(null)
-    }
+    var tarefaExcluir by remember { mutableStateOf<Tarefa?>(null) }
 
     val concluidas = tarefas.count { it.concluida }
     val pendentes = tarefas.size - concluidas
@@ -152,6 +149,7 @@ fun TelaTarefas(
                     items = tarefas,
                     key = { it.id }
                 ) { tarefa ->
+
                     Card(
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -182,14 +180,18 @@ fun TelaTarefas(
                                         style = MaterialTheme.typography.titleMedium
                                     )
 
-                                    if (tarefa.concluida) {
-                                        Text(
-                                            text = "Concluída",
-                                            color = MaterialTheme.colorScheme.primary
-                                        )
-                                    } else {
-                                        Text("Pendente")
-                                    }
+                                    Text(
+                                        text = if (tarefa.concluida) {
+                                            "Concluída"
+                                        } else {
+                                            "Pendente"
+                                        },
+                                        color = if (tarefa.concluida) {
+                                            MaterialTheme.colorScheme.primary
+                                        } else {
+                                            MaterialTheme.colorScheme.onSurface
+                                        }
+                                    )
                                 }
                             }
 
@@ -223,7 +225,6 @@ fun TelaTarefas(
             }
         }
     }
-
     tarefaExcluir?.let { tarefa ->
         AlertDialog(
             onDismissRequest = {

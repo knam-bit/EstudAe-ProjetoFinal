@@ -1,10 +1,11 @@
+
 package com.example.estudai.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,6 +18,8 @@ import com.example.estudai.data.HorarioEstudo
 import com.example.estudai.data.HorarioEstudoDao
 import kotlinx.coroutines.launch
 
+// CORES DO ESTUDAÊ
+
 private val Bege = Color(0xFFF5F1E9)
 private val Marrom = Color(0xFF514238)
 private val Verde = Color(0xFF77856B)
@@ -27,19 +30,31 @@ private val Cinza = Color(0xFF827B72)
 @Composable
 fun TelaRotina(
     dao: HorarioEstudoDao,
-    onVoltar: () -> Unit
+    onVoltar: () -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
-    val horarios by dao.listarTodos().collectAsState(
-        initial = emptyList()
-    )
+
+    // LISTA DE HORÁRIOS DO ROOM
+
+    val horarios by dao.listarTodos()
+        .collectAsState(initial = emptyList())
 
     val scope = rememberCoroutineScope()
 
+    // ESTADOS DOS CAMPOS
+
     var materia by remember { mutableStateOf("") }
-    var dia by remember { mutableStateOf("Segunda-feira") }
+    var dia by remember { mutableStateOf("") }
     var horario by remember { mutableStateOf("") }
 
+    // CONTROLE DE EXCLUSÃO
+
+    var horarioExcluir by remember {
+        mutableStateOf<HorarioEstudo?>(null)
+    }
+
     Scaffold(
+        modifier = modifier,
         containerColor = Bege,
         topBar = {
             TopAppBar(
@@ -52,6 +67,7 @@ fun TelaRotina(
                             letterSpacing = 3.sp,
                             color = Marrom
                         )
+
                         Text(
                             text = "Minha rotina",
                             fontSize = 20.sp,
@@ -79,16 +95,18 @@ fun TelaRotina(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .background(Bege)
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 20.dp)
         ) {
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-            // CABEÇALHO
+            // TÍTULO
 
             Text(
-                text = "Organize seu tempo. ✦",
-                fontSize = 25.sp,
+                text = "Minha rotina 🗓️",
+                fontSize = 27.sp,
                 fontWeight = FontWeight.Bold,
                 color = Marrom
             )
@@ -96,133 +114,193 @@ fun TelaRotina(
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = "Planeje seus horários e construa uma rotina de estudos equilibrada.",
-                fontSize = 13.sp,
+                text = "Planeje seus horários e mantenha o foco nos estudos.",
+                fontSize = 14.sp,
                 color = Cinza,
-                lineHeight = 20.sp
+                lineHeight = 21.sp
             )
-
-            Spacer(modifier = Modifier.height(22.dp))
-
-
-
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(22.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = Branco
-                )
-            ) {
-                Column(
-                    modifier = Modifier.padding(18.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-
-                    Text(
-                        text = "Novo horário",
-                        fontSize = 19.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Marrom
-                    )
-
-                    Text(
-                        text = "Adicione um momento para estudar.",
-                        fontSize = 12.sp,
-                        color = Cinza
-                    )
-
-                    OutlinedTextField(
-                        value = materia,
-                        onValueChange = { materia = it },
-                        label = { Text("Matéria") },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        shape = RoundedCornerShape(14.dp)
-                    )
-
-                    OutlinedTextField(
-                        value = dia,
-                        onValueChange = { dia = it },
-                        label = { Text("Dia da semana") },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        shape = RoundedCornerShape(14.dp)
-                    )
-
-                    OutlinedTextField(
-                        value = horario,
-                        onValueChange = { horario = it },
-                        label = { Text("Horário (ex.: 14:00)") },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        shape = RoundedCornerShape(14.dp)
-                    )
-
-                    Button(
-                        onClick = {
-                            if (
-                                materia.isNotBlank() &&
-                                dia.isNotBlank() &&
-                                horario.isNotBlank()
-                            ) {
-                                scope.launch {
-                                    dao.inserir(
-                                        HorarioEstudo(
-                                            materia = materia.trim(),
-                                            dia = dia.trim(),
-                                            horario = horario.trim()
-                                        )
-                                    )
-
-                                    materia = ""
-                                    horario = ""
-                                }
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp),
-                        enabled = materia.isNotBlank() &&
-                                dia.isNotBlank() &&
-                                horario.isNotBlank(),
-                        shape = RoundedCornerShape(14.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Verde
-                        )
-                    ) {
-                        Text(
-                            text = "Salvar horário  +",
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-            }
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // LISTA DE HORÁRIOS
+            // CARD PRINCIPAL
 
-            Row(
+            Card(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                shape = RoundedCornerShape(24.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Marrom
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(22.dp)
+                ) {
+
+                    Text(
+                        text = "SUA ORGANIZAÇÃO COMEÇA AQUI",
+                        fontSize = 10.sp,
+                        letterSpacing = 2.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFD9CDBB)
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = "Um horário de cada vez.",
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Branco
+                    )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "Organize sua rotina, distribua suas matérias e conquiste seus objetivos.",
+                        fontSize = 13.sp,
+                        color = Color(0xFFE5DED4),
+                        lineHeight = 20.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = "✦ Seu progresso começa com planejamento.",
+                        color = Color(0xFFD5C5A9),
+                        fontSize = 12.sp
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(28.dp))
+
+            // CADASTRO DE HORÁRIOS
+
+            Text(
+                text = "Adicionar horário",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Marrom
+            )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
+                text = "Preencha as informações do seu estudo.",
+                fontSize = 13.sp,
+                color = Cinza
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedTextField(
+                value = materia,
+                onValueChange = { materia = it },
+                label = { Text("Matéria") },
+                placeholder = { Text("Ex.: Matemática") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                shape = RoundedCornerShape(14.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Verde,
+                    focusedLabelColor = Verde,
+                    cursorColor = Verde
+                )
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                value = dia,
+                onValueChange = { dia = it },
+                label = { Text("Dia da semana") },
+                placeholder = { Text("Ex.: Segunda-feira") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                shape = RoundedCornerShape(14.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Verde,
+                    focusedLabelColor = Verde,
+                    cursorColor = Verde
+                )
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                value = horario,
+                onValueChange = { horario = it },
+                label = { Text("Horário de estudo") },
+                placeholder = { Text("Ex.: 14:00 às 15:00") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                shape = RoundedCornerShape(14.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Verde,
+                    focusedLabelColor = Verde,
+                    cursorColor = Verde
+                )
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // BOTÃO CADASTRAR
+
+            Button(
+                onClick = {
+                    scope.launch {
+
+                        val novoHorario = HorarioEstudo(
+                            materia = materia.trim(),
+                            dia = dia.trim(),
+                            horario = horario.trim()
+                        )
+
+                        dao.inserir(novoHorario)
+
+                        materia = ""
+                        dia = ""
+                        horario = ""
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp),
+                enabled = materia.isNotBlank() &&
+                        dia.isNotBlank() &&
+                        horario.isNotBlank(),
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Marrom,
+                    contentColor = Branco
+                )
             ) {
                 Text(
-                    text = "Minha programação",
-                    fontSize = 19.sp,
+                    text = "Adicionar à rotina",
                     fontWeight = FontWeight.Bold,
-                    color = Marrom
-                )
-
-                Text(
-                    text = "${horarios.size} horários",
-                    fontSize = 12.sp,
-                    color = Verde,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 14.sp
                 )
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(28.dp))
+
+            // LISTA DE HORÁRIOS
+
+            Text(
+                text = "Meus horários",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Marrom
+            )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
+                text = "${horarios.size} horário(s) cadastrado(s)",
+                fontSize = 13.sp,
+                color = Cinza
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             if (horarios.isEmpty()) {
 
@@ -230,32 +308,36 @@ fun TelaRotina(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color(0xFFE7E9DE)
+                        containerColor = Branco
                     )
                 ) {
+
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(24.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+
                         Text(
-                            text = "✦",
-                            fontSize = 30.sp,
-                            color = Verde
+                            text = "🗓️",
+                            fontSize = 32.sp
                         )
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         Text(
-                            text = "Sua rotina começa aqui!",
+                            text = "Sua rotina está vazia!",
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             color = Marrom
                         )
 
+                        Spacer(modifier = Modifier.height(6.dp))
+
                         Text(
-                            text = "Cadastre seu primeiro horário de estudo.",
-                            fontSize = 12.sp,
+                            text = "Adicione seus horários para começar a organizar seus estudos.",
+                            fontSize = 13.sp,
                             color = Cinza
                         )
                     }
@@ -263,87 +345,174 @@ fun TelaRotina(
 
             } else {
 
-                LazyColumn(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    items(
-                        items = horarios,
-                        key = { it.id }
-                    ) { item ->
+                horarios.forEach { item ->
 
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(18.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = Branco
-                            )
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 12.dp),
+                        shape = RoundedCornerShape(20.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Branco
+                        )
+                    ) {
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(18.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp),
-                                verticalAlignment = Alignment.CenterVertically
+
+                            Surface(
+                                shape = RoundedCornerShape(14.dp),
+                                color = Color(0xFFE7E9DE)
+                            ) {
+                                Text(
+                                    text = "📚",
+                                    fontSize = 23.sp,
+                                    modifier = Modifier.padding(12.dp)
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.width(14.dp))
+
+                            Column(
+                                modifier = Modifier.weight(1f)
                             ) {
 
-                                Surface(
-                                    shape = RoundedCornerShape(14.dp),
-                                    color = Color(0xFFE7E9DE)
-                                ) {
-                                    Text(
-                                        text = "◷",
-                                        fontSize = 24.sp,
-                                        color = Verde,
-                                        modifier = Modifier.padding(12.dp)
-                                    )
+                                Text(
+                                    text = item.materia,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Marrom
+                                )
+
+                                Spacer(modifier = Modifier.height(4.dp))
+
+                                Text(
+                                    text = item.dia,
+                                    fontSize = 13.sp,
+                                    color = Verde
+                                )
+
+                                Text(
+                                    text = item.horario,
+                                    fontSize = 12.sp,
+                                    color = Cinza
+                                )
+                            }
+
+                            TextButton(
+                                onClick = {
+                                    horarioExcluir = item
                                 }
-
-                                Spacer(modifier = Modifier.width(14.dp))
-
-                                Column(
-                                    modifier = Modifier.weight(1f)
-                                ) {
-                                    Text(
-                                        text = item.materia,
-                                        fontSize = 16.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = Marrom
-                                    )
-
-                                    Text(
-                                        text = item.dia,
-                                        fontSize = 12.sp,
-                                        color = Cinza
-                                    )
-
-                                    Text(
-                                        text = item.horario,
-                                        fontSize = 13.sp,
-                                        color = Verde,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-
-                                TextButton(
-                                    onClick = {
-                                        scope.launch {
-                                            dao.excluir(item)
-                                        }
-                                    }
-                                ) {
-                                    Text(
-                                        text = "Excluir",
-                                        color = Color(0xFF9B6258),
-                                        fontSize = 12.sp
-                                    )
-                                }
+                            ) {
+                                Text(
+                                    text = "Excluir",
+                                    color = Color(0xFF9B5148),
+                                    fontSize = 12.sp
+                                )
                             }
                         }
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // FRASE FINAL
+
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                color = Color(0xFFE7E9DE)
+            ) {
+
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    Text(
+                        text = "✦",
+                        fontSize = 22.sp,
+                        color = Verde
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = "Você não precisa fazer tudo hoje.",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Marrom
+                    )
+
+                    Text(
+                        text = "Só precisa continuar.",
+                        fontSize = 13.sp,
+                        color = Cinza
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
         }
     }
+
+    // DIÁLOGO DE EXCLUSÃO
+
+    horarioExcluir?.let { item ->
+
+        AlertDialog(
+            onDismissRequest = {
+                horarioExcluir = null
+            },
+            containerColor = Bege,
+            title = {
+                Text(
+                    text = "Excluir horário?",
+                    color = Marrom,
+                    fontWeight = FontWeight.Bold
+                )
+            },
+            text = {
+                Text(
+                    text = "Deseja excluir o horário de ${item.materia}?",
+                    color = Cinza
+                )
+            },
+            confirmButton = {
+
+                TextButton(
+                    onClick = {
+                        scope.launch {
+                            dao.excluir(item)
+                            horarioExcluir = null
+                        }
+                    }
+                ) {
+                    Text(
+                        text = "Excluir",
+                        color = Color(0xFF9B5148)
+                    )
+                }
+            },
+            dismissButton = {
+
+                TextButton(
+                    onClick = {
+                        horarioExcluir = null
+                    }
+                ) {
+                    Text(
+                        text = "Cancelar",
+                        color = Marrom
+                    )
+                }
+            }
+        )
+    }
 }
+

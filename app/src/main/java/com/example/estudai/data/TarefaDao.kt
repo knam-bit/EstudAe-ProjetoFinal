@@ -1,4 +1,3 @@
-
 package com.example.estudai.data
 
 import androidx.room.Dao
